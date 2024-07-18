@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,4 +79,16 @@ class ArticleController extends AbstractController
         $this->em->flush();
         return $this->json($article);
     }
+
+    #[Route('/{article}/category/{category}', methods: 'PATCH')]
+    public function addCategory(Article $article, Category $category) {
+        if($article->getCategories()->contains($category)) {
+            $article->removeCategory($category);
+        }else {
+            $article->addCategory($category);
+        }
+        $this->em->flush();
+        return $this->json($article);
+    }
+
 }
