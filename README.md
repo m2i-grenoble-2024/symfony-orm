@@ -38,6 +38,16 @@ Un projet symfony avec l'ORM doctrine
 4. Exécuter les migrations existantes : `php bin/console do:mi:mi`
 5. Si vous avez fait de nouvelles entités ou modifier les entités, refaire une migration et un migrate : `php bin/console ma:mi` puis `php bin/console do:mi:mi`
 
+## Maquettes du front
+Maquettes des appels API qui seraient fait par le front end pour afficher les informations requises sur les pages
+
+### Page d'une categorie
+![Une catégorie](maquettes/front-api-calls.png)
+Ici, on considère qu'on a cliqué sur le lien pour la catégorie Recettes dans l'en-tête, on affiche donc l'en-tête avec les liste des catégories qu'on récupère de la base de données avec une requête GET. On récupère aussi la catégorie spécifique sur laquelle on se trouve actuellement via un GET by id. Enfin on récupère la liste des articles qui correspondent à cette catégorie via un autre appel GET by category
+
+![Un article](maquettes/front-api-calls-2.png)
+Ici, on est sur la page qui affiche un article spécifique. On fait donc une requête GET by id pour aller récupérer l'article à afficher. On fait également une requête GET by article pour aller chercher les commentaires de l'article. Enfin si on valide le formulaire, on fait un POST d'un commentaire sur l'article actuel
+
 ## Exercice
 ### Le contrôleur de l'Article
 1. Générer un contrôleur (`php bin/console ma:con`) ArticleController
