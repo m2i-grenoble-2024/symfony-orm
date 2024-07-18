@@ -44,13 +44,13 @@ class ArticleController extends AbstractController
         
         $article = $this->repo->find($id);
         //Si on a pas trouvé l'article pour cet id, on renvoie une erreur 404
-        if(!$dog) {
+        if(!$article) {
             throw new NotFoundHttpException("Article not found");
             
         }
         return $this->json($article);
     }
-        */
+    */    
     #[Route(methods:'POST')]
     public function add(#[MapRequestPayload] Article $article): JsonResponse {
         //On assigne la date de maintenant en createdAt
@@ -74,6 +74,7 @@ class ArticleController extends AbstractController
         [
             'object_to_populate' => $article
         ]);
+        
         $this->em->flush();
         return $this->json($article);
     }
