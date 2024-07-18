@@ -64,4 +64,4 @@ Un projet symfony avec l'ORM doctrine
 3. Faire la migration et l'exécuter
 4. Rajouter un ou des Ignore du/des côté(s) où ça fait le plus de sens selon vous
 5. Générer un CategoryController qui aura un GET classique, un POST classique aussi
-6. Rajouter une route /api/category/{id}/products qui permettra de récupérer tous les produits d'une category donnée
+6. Rajouter une route /api/category/{id}/articles qui permettra de récupérer tous les produits d'une category donnée
