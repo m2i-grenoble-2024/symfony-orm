@@ -8,6 +8,7 @@ Un projet symfony avec l'ORM doctrine
 4. Créer la base de données `php bin/console do:da:cr`
 5. On exécute la migration avec `php bin/console do:mi:mi`
 
+
 ## Les commandes principales et quand les utiliser
 
 `php bin/console make:entity` (ou ma:en) : pour créer une entité via le cli avec ses propriétés et ses relations avec les autres entités (crée aussi les repositories). Peut également être utilisée pour modifier une entité existante.
@@ -28,6 +29,14 @@ Un projet symfony avec l'ORM doctrine
 5. Créer une migration avec ma:mi
 6. Exécuter la migration avec do:mi:mi
 7. Organiser un grand square dance pour fêter la création de notre couche data
+
+
+## Repartir d'une base de données propre après un pull/clone
+1. Supprimer la base de données : `php bin/console do:da:dr --force`
+2. Si dans votre onglet git vous avez des nouveaux fichiers de migration, supprimez/annulez les
+3. Recréer la base de données : `php bin/console do:da:cr`
+4. Exécuter les migrations existantes : `php bin/console do:mi:mi`
+5. Si vous avez fait de nouvelles entités ou modifier les entités, refaire une migration et un migrate : `php bin/console ma:mi` puis `php bin/console do:mi:mi`
 
 ## Exercice
 ### Le contrôleur de l'Article
