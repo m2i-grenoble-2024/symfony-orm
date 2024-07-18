@@ -10,15 +10,15 @@ Un projet symfony avec l'ORM doctrine
 
 ## Les commandes principales et quand les utiliser
 
-`bin/console make:entity` (ou ma:en) : pour créer une entité via le cli avec ses propriétés et ses relations avec les autres entités (crée aussi les repositories). Peut également être utilisée pour modifier une entité existante.
+`php bin/console make:entity` (ou ma:en) : pour créer une entité via le cli avec ses propriétés et ses relations avec les autres entités (crée aussi les repositories). Peut également être utilisée pour modifier une entité existante.
 
-`bin/console make:migration` (ou ma:mi) : Pour créer un fichier de migration qui contiendra les requête SQL à exécuter pour passer de l'état actuel de la base de données à ce qu'on a définit dans nos entités. Je conseil de faire une migration une première fois quand on a définit toutes nos entités, puis d'en refaire seulement si en cours de projet on se rend compte qu'on a oublié des choses ou qu'on doit modifier notre structure de bdd
+`php bin/console make:migration` (ou ma:mi) : Pour créer un fichier de migration qui contiendra les requête SQL à exécuter pour passer de l'état actuel de la base de données à ce qu'on a définit dans nos entités. Je conseil de faire une migration une première fois quand on a définit toutes nos entités, puis d'en refaire seulement si en cours de projet on se rend compte qu'on a oublié des choses ou qu'on doit modifier notre structure de bdd
 
-`bin/console doctrine:migrations:migrate` (ou do:mi:mi) : Exécute toutes les migrations du projet, à exécuter quand on clone ou qu'on pull un projet, ou après avoir créer une migration avec ma:mi
+`php bin/console doctrine:migrations:migrate` (ou do:mi:mi) : Exécute toutes les migrations du projet, à exécuter quand on clone ou qu'on pull un projet, ou après avoir créer une migration avec ma:mi
 
-`bin/console doctrine:database:create` (ou do:da:cr) : Crée la base de données en se basant sur la DATABASE_URL
+`php bin/console doctrine:database:create` (ou do:da:cr) : Crée la base de données en se basant sur la DATABASE_URL
 
-`bin/console doctrine:database:drop` (ou do:da:dr) : Drop la base de données
+`php bin/console doctrine:database:drop` (ou do:da:dr) : Drop la base de données
 
 ### Workflow possible
 1. Créer le .env.local avec mon DATABASE_URL
@@ -38,3 +38,12 @@ Un projet symfony avec l'ORM doctrine
 5. Utiliser les mêmes méthodes du $this->em pour faire le PUT
 6. Utiliser le $this->em->find et le $this->em->remove suivi d'un $this->em->flush() pour faire la suppression
 7. Pour le plaisir, pourquoi pas faire de la validation : le title et le content ne doivent pas être vides, et on va dire que le title doit faire entre 3 et 100 caractères
+
+
+### Entité Comment
+1. En utilisant le make:entity, générer une entité Comment qui aura comme propriétés un content en text et un postedAt en datetime_immutable
+2. Ajouter également une propriété qui s'appelera article et lui donner comme type relation et choisir la relation qui convient puis répondre aux questions que posera symfony
+3. On valide pour terminer l'entité et on fait une migration avec ma:mi et do:mi:mi
+4. Faire ensuite un CommentController avec une route globale /api/comment et un constructeur avec l'EntityManagerInterface et le CommentRepository en private
+5. Créer une Route en GET qui pointera sur /api/comment/article/{id} et mettre un argument de type Article dans les paramètres de la route
+6. À partir de là, deux possibilités, soit on utilise le CommentRepository pour faire un findBy et en lui donnant l'article, ou bien on renvoie en json le article->getComments()
