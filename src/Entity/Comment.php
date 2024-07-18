@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -21,6 +22,7 @@ class Comment
     private ?\DateTimeImmutable $postedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[Ignore]
     private ?Article $article = null;
 
     public function getId(): ?int
