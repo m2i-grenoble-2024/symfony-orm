@@ -56,3 +56,12 @@ Un projet symfony avec l'ORM doctrine
 4. Faire ensuite un CommentController avec une route globale /api/comment et un constructeur avec l'EntityManagerInterface et le CommentRepository en private
 5. Créer une Route en GET qui pointera sur /api/comment/article/{id} et mettre un argument de type Article dans les paramètres de la route
 6. À partir de là, deux possibilités, soit on utilise le CommentRepository pour faire un findBy et en lui donnant l'article, ou bien on renvoie en json le article->getComments()
+
+
+### Entité Category
+1. Générer une nouvelle entité Category avec un make:entity qui n'aura comme propriété qu'un label en string not null
+2. Lui rajouter également une relation ManyToMany avec l'entité Article (relation accessible des deux côtés)
+3. Faire la migration et l'exécuter
+4. Rajouter un ou des Ignore du/des côté(s) où ça fait le plus de sens selon vous
+5. Générer un CategoryController qui aura un GET classique, un POST classique aussi
+6. Rajouter une route /api/category/{id}/products qui permettra de récupérer tous les produits d'une category donnée
